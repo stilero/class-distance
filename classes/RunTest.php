@@ -14,7 +14,7 @@ function runTest() {
     
     $g->addedge("2", "1", 7);
     $g->addedge("2", "3", 10);
-    $g->addedge("2", "4", 16);
+    $g->addedge("2", "4", 15);
     
     $g->addedge("3", "1", 9);
     $g->addedge("3", "6", 2);
@@ -33,12 +33,15 @@ function runTest() {
     $g->addedge("6", "5", 9);
 
 
-    list($distances, $prev) = $g->paths_from("1");
-
-    $path = $g->paths_to($prev, "5");
-
+//    list($distances, $prev) = $g->paths_from("1");
+//
+//    $path = $g->paths_to($prev, "5");
+//
+//    print_r($path);
+    $path = $g->getpath('2', '4');
+    $weights = $g->getWeights();
     print_r($path);
-
+    print_r($weights);
 }
 
 

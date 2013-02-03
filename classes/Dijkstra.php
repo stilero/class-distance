@@ -27,7 +27,8 @@ class Edge {
 class Graph {
 
     public $nodes = array();
-    
+    public $path;
+
     /**
      * Adds an edge to the graph
      * @param string $startNodeName Name of the start node
@@ -104,7 +105,8 @@ class Graph {
             array_push($path, $nextnode);
             $current = $nextnode;
         }
-        return array_reverse($path);
+        $this->path = array_reverse($path);
+        return $this->path;
     }
     
     /**
@@ -118,6 +120,25 @@ class Graph {
         return $this->paths_to($prev, $targetNodeName);
     }
 
+    public function getWeights(){
+        $weight = 0;
+        for($i = 0 ; $i < count($this->path)-1 ; $i++){
+            $thisNode = $this->path[$i];
+            $nextNode = $this->path[$i + 1];
+            $weight += $this->getWeightBetweenNodes($thisNode, $nextNode);
+        }
+        return $weight;
+    }
+    
+    public function getWeightBetweenNodes($startNode, $targetNode){
+        $edges = $this->nodes[$startNode];
+        foreach ($edges as $edge) {
+            if($edge->targetNodeName == $targetNode){
+                return $edge->weight;
+            } 
+        }
+        return 0;
+    }
 }
 
 function compareWeights($a, $b) {
