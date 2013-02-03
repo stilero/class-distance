@@ -32,7 +32,7 @@ class Dijkstra{
     
     function computePaths(Vertex $source){
         $source->minDistance = 0;
-        $this->vertexQueue[] = $source;
+        $this->vertexQueue = $source;
         while (count($this->vertexQueue) > 0){
             $Vertex = array_shift($this->vertexQueue);
             foreach ($Vertex->adjacencies as $Edge) {

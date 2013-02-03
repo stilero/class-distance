@@ -79,10 +79,10 @@ $v6->adjacencies = array(
 $d = new Dijkstra();
 $d->computePaths($v1);
 
-//$path = $d->getShortestPathTo($v2);
+$path = $d->getShortestPathTo($v2);
 ?>
 <pre>
 <?php
-    var_dump($d->vertexQueue);
+    var_dump($path);
  ?>
 </pre>
